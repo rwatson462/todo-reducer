@@ -1,6 +1,9 @@
 import {useContext} from "react";
 import {todoContext} from "./todoContext.ts";
 
+/**
+ * @internal Should not be used in general code
+ */
 export function useTodoContext() {
   const context = useContext(todoContext)
 

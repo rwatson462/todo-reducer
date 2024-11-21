@@ -6,9 +6,7 @@ export interface Todo {
   id: Uuid;
 }
 
-export type TodoReducerActionType = 'create' | 'complete' | 'delete'
-
 export type TodoReducerAction =
-  | { type: 'create', payload: Todo }
-  | { type: 'complete', id: Uuid }
-  | { type: 'delete', id: Uuid }
+  | { type: 'CREATE', payload: Todo }
+  | { type: 'COMPLETE', id: Uuid }
+  | { type: 'DELETE', id: Uuid }

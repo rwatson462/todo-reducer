@@ -7,8 +7,8 @@ export function useTodoActions() {
   const { dispatch } = useTodoContext()
 
   return useMemo(() => ({
-    complete: (id: Uuid) => dispatch({type: 'complete', id}),
-    create: (payload: Todo) => dispatch({type: 'create', payload}),
-    delete: (id: Uuid) => dispatch({type: 'delete', id}),
+    complete: (id: Uuid) => dispatch({type: 'COMPLETE', id}),
+    create: (payload: Todo) => dispatch({type: 'CREATE', payload}),
+    delete: (id: Uuid) => dispatch({type: 'DELETE', id}),
   } as const), [dispatch])
 }
