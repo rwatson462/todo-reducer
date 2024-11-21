@@ -1,15 +1,14 @@
-
-export type UUID = `${string}-${string}-${string}-${string}-${string}`
+import {Uuid} from "../unique-id/types";
 
 export interface Todo {
   title: string;
   complete: boolean;
-  id: UUID;
+  id: Uuid;
 }
 
 export type TodoReducerActionType = 'create' | 'complete' | 'delete'
 
-export interface TodoReducerAction {
-  type: TodoReducerActionType
-  payload: Todo
-}
+export type TodoReducerAction =
+  | { type: 'create', payload: Todo }
+  | { type: 'complete', id: Uuid }
+  | { type: 'delete', id: Uuid }

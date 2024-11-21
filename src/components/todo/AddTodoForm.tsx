@@ -1,23 +1,27 @@
-import {FormEvent, useState} from "react";
-import {nextId} from "../../lib/todo/nextId.ts";
+import {createRef, FormEvent} from "react";
+import {uniqueId} from "../../lib/unique-id/uniqueId.ts";
 import {useTodoActions} from "../../lib/todo/useTodoActions.ts";
 
 export function AddTodoForm() {
+  const inputRef = createRef<HTMLInputElement>()
   const { create: createNewTodo } = useTodoActions()
-  const [newTodoTitle, setNewTodoTitle] = useState<string>('')
 
   function addTodo(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()  // required as this is a form submit event
 
-    createNewTodo({title: newTodoTitle, complete: false, id: nextId()})
+    createNewTodo({title: inputRef.current!.value, complete: false, id: uniqueId()})
     
-    setNewTodoTitle('')
+    inputRef.current!.value = ''
   }
 
   return (
     <form className={'py-4 space-x-2 flex items-center'} onSubmit={addTodo}>
-      <input className={'text-slate-950 rounded shadow px-1 py-0.5 text-sm'} type={'text'} value={newTodoTitle}
-             onChange={e => setNewTodoTitle(e.currentTarget.value)} placeholder={"create new todo"}/>
+      <input
+        className={'text-slate-950 rounded shadow px-1 py-0.5 text-sm'}
+        type={'text'}
+        ref={inputRef}
+        placeholder={"create new todo"}
+      />
       <button className={'rounded border-slate-50 text-xs uppercase px-2 py-1 bg-slate-700'}>Create</button>
     </form>
   )

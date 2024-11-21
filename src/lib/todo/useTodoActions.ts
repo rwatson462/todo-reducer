@@ -1,12 +1,14 @@
 import {useTodoContext} from "./useTodoContext.ts";
-import {Todo, TodoReducerActionType} from "./types";
+import {Uuid} from "../unique-id/types";
+import {Todo} from "./types";
+import {useMemo} from "react";
 
-export function useTodoActions(): Record<TodoReducerActionType, (payload: Todo) => void> {
+export function useTodoActions() {
   const { dispatch } = useTodoContext()
 
-  return {
-    complete: (payload) => dispatch({type: 'complete', payload}),
-    create: (payload) => dispatch({type: 'create', payload}),
-    delete: (payload) => dispatch({type: 'delete', payload}),
-  }
+  return useMemo(() => ({
+    complete: (id: Uuid) => dispatch({type: 'complete', id}),
+    create: (payload: Todo) => dispatch({type: 'create', payload}),
+    delete: (id: Uuid) => dispatch({type: 'delete', id}),
+  } as const), [dispatch])
 }

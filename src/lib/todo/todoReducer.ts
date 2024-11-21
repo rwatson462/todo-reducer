@@ -8,8 +8,11 @@ export function todoReducer(state: TodoState, action: TodoReducerAction) {
     case 'create':
       return [...state, action.payload]
     case 'complete':
-      return state.map(todo => todo.id === action.payload.id ? {...todo, complete: true} : todo)
+      return state.map(todo => {
+        console.log(todo.id, action.id)
+        return todo.id === action.id ? {...todo, complete: true} : todo
+      })
     case 'delete':
-      return state.filter(todo => todo.id !== action.payload.id)
+      return state.filter(todo => todo.id !== action.id)
   }
 }

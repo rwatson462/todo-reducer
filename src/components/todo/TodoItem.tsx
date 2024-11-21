@@ -9,12 +9,12 @@ export function TodoItem({todo}: {todo: Todo}) {
       <div className={'flex gap-2 items-start'}>
         { todo.complete ? '✅' : '❌' }
         <p className={'flex flex-col items-start'}>
-          <button onClick={() => completeTodo(todo)} className={'hover:underline'}>{todo.title}</button>
+          <button onClick={() => completeTodo(todo.id)} className={'hover:underline'}>{todo.title}</button>
           <span className={'text-sm text-slate-400'}>{todo.id}</span>
         </p>
       </div>
       <p>
-        <button onClick={() => deleteTodo(todo)} className={'text-xs underline'}>delete</button>
+        <button onClick={() => deleteTodo(todo.id)} className={'text-xs underline'}>delete</button>
       </p>
     </li>
   )
