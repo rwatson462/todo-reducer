@@ -1,8 +1,10 @@
 
+export type UUID = `${string}-${string}-${string}-${string}-${string}`
+
 export interface Todo {
   title: string;
   complete: boolean;
-  id: number;
+  id: UUID;
 }
 
 export type TodoReducerActionType = 'create' | 'complete' | 'delete'

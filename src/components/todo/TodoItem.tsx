@@ -5,7 +5,7 @@ export function TodoItem({todo}: {todo: Todo}) {
   const { complete: completeTodo, delete: deleteTodo } = useTodoActions()
 
   return (
-    <li className={'flex items-center justify-between hover:bg-slate-800 px-2 py-1 rounded'}>
+    <li className={'border-b border-b-slate-600 flex items-center justify-between hover:bg-slate-800 px-2 py-1 rounded'}>
       <div className={'flex gap-2 items-start'}>
         { todo.complete ? '✅' : '❌' }
         <p className={'flex flex-col items-start'}>
